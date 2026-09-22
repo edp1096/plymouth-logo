@@ -1,0 +1,85 @@
+[
+  {
+    "name": "trickle_revive_speaki",
+    "source_filename": "trickle_revive_speaki.gif",
+    "source_sha256": "7b39b8c7f0d1d335cb880e2a6699e10bfacb288e8c9f1699c70a60de6059edab",
+    "source_frames": 111,
+    "source_duration_ms": 3700,
+    "output_frames": 60,
+    "output_size": [
+      160,
+      160
+    ],
+    "output_loop_ms": 2000
+  },
+  {
+    "name": "gugukaka",
+    "source_filename": "gugukaka.gif",
+    "source_sha256": "589effcd717a7077e6647ce4403eae919b7d79764c9155740cc8632ee45f38b7",
+    "source_frames": 38,
+    "source_duration_ms": 1260,
+    "output_frames": 60,
+    "output_size": [
+      160,
+      160
+    ],
+    "output_loop_ms": 2000
+  },
+  {
+    "name": "teuose",
+    "source_filename": "teuose.gif",
+    "source_sha256": "95e542f3f1d9a0f17cb7452c862e6ffc1804354725e51dc158c1ac044932c7aa",
+    "source_frames": 50,
+    "source_duration_ms": 2000,
+    "output_frames": 60,
+    "output_size": [
+      160,
+      160
+    ],
+    "output_loop_ms": 2000
+  },
+  {
+    "name": "pepe",
+    "source_filename": "pepe.gif",
+    "source_sha256": "7c86eff102eb619dace55127443a748710f278e070f9d4ca98c54ab1778330e4",
+    "source_frames": 72,
+    "source_duration_ms": 2160,
+    "output_frames": 60,
+    "output_size": [
+      160,
+      160
+    ],
+    "output_loop_ms": 2000
+  },
+  {
+    "name": "beubmi",
+    "source_filename": "user-linked arca.live MP4",
+    "source_sha256": "9c7e9768fc6b5fc0d62db124086e63529b39c276a86148313d343a85bd33c735",
+    "source_frames": 16,
+    "source_duration_ms": 320,
+    "output_frames": 60,
+    "output_size": [
+      160,
+      160
+    ],
+    "output_loop_ms": 2000,
+    "cycles_per_loop": 6,
+    "note": "Six approximately 333ms cycles per Plymouth loop, sampled at 30 FPS; edge-connected white background removed."
+  },
+  {
+    "name": "karateka",
+    "source_filename": "karateka.gif",
+    "source_sha256": "c5d87ad806caae0706d8fe3982ad28153f6678083f7f1467e3f2a99154f3ad3c",
+    "source_frames": 288,
+    "source_duration_ms": 17280,
+    "selected_frames": "0–287 (complete original animation)",
+    "output_frames": 288,
+    "output_size": [
+      160,
+      160
+    ],
+    "output_loop_ms": 17280,
+    "note": "All original frames at 60 ms per frame, without trimming or resampling. Black backdrop, blue floor, and floor shadow removed; enclosed black belt detail retained. Fixed common crop preserves body movement; nearest-neighbor scaling.",
+    "cycles_per_loop": 1
+  }
+]
