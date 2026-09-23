@@ -22,6 +22,7 @@ import (
 	"os/exec"
 	"os/signal"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"sync"
 	"syscall"
@@ -33,28 +34,36 @@ var bundledAssets embed.FS
 var assets resourceStore = bundledAssets
 
 type payload struct {
-	LogoPosition *position `json:"logo_position,omitempty"`
-	SpinnerSize  int       `json:"spinner_size"`
-	SpinnerItem  string    `json:"spinner_item"`
-	Background   string    `json:"background"`
-	Spinner      *position `json:"spinner,omitempty"`
-	Image        string    `json:"image"`
-	Size         int       `json:"size"`
+	Layers       []sceneSpec     `json:"layers"`
+	Animations   []animationSpec `json:"animations"`
+	LogoPosition *position       `json:"logo_position,omitempty"`
+	SpinnerSize  int             `json:"spinner_size"`
+	SpinnerItem  string          `json:"spinner_item"`
+	Background   string          `json:"background"`
+	Spinner      *position       `json:"spinner,omitempty"`
+	Image        string          `json:"image"`
+	Size         int             `json:"size"`
 }
 type status struct {
-	LogoPosition position `json:"logo_position"`
-	SpinnerSize  int      `json:"spinner_size"`
-	SpinnerItem  string   `json:"spinner_item"`
-	Background   string   `json:"background"`
-	Spinner      position `json:"spinner"`
-	Busy         bool     `json:"busy"`
-	OK           bool     `json:"ok"`
-	Message      string   `json:"message"`
-	Kernel       string   `json:"kernel"`
-	Prepared     bool     `json:"prepared"`
-	Size         int      `json:"size"`
-	Applied      bool     `json:"applied"`
-	Revision     uint64   `json:"revision"`
+	Layers         []sceneLayer     `json:"layers"`
+	LayerError     string           `json:"layer_error"`
+	SpinnerFPS     float64          `json:"spinner_fps"`
+	Animations     []animationLayer `json:"animations"`
+	AnimationError string           `json:"animation_error"`
+	HostError      string           `json:"host_error"`
+	LogoPosition   position         `json:"logo_position"`
+	SpinnerSize    int              `json:"spinner_size"`
+	SpinnerItem    string           `json:"spinner_item"`
+	Background     string           `json:"background"`
+	Spinner        position         `json:"spinner"`
+	Busy           bool             `json:"busy"`
+	OK             bool             `json:"ok"`
+	Message        string           `json:"message"`
+	Kernel         string           `json:"kernel"`
+	Prepared       bool             `json:"prepared"`
+	Size           int              `json:"size"`
+	Applied        bool             `json:"applied"`
+	Revision       uint64           `json:"revision"`
 }
 type app struct {
 	preferencesPath string
@@ -64,13 +73,15 @@ type app struct {
 	token, host     string
 	preview         []byte
 	execute         func(string, string) ([]byte, error)
+	checkHost       func() error
+	themePreview    func(string) systemThemePreview
 	watch           *windowWatch
 }
 
 func normalize(raw []byte, size int) ([]byte, error) { return resizePNG(raw, size, false) }
 func resizePNG(raw []byte, size int, upscale bool) ([]byte, error) {
-	if size < 32 || size > 1024 {
-		return nil, fmt.Errorf("logo size must be 32–1024 pixels")
+	if size < 1 || size > 1920 {
+		return nil, fmt.Errorf("image size must be 1–1920 pixels")
 	}
 	cfg, _, err := image.DecodeConfig(bytes.NewReader(raw))
 	if err != nil {
@@ -143,7 +154,49 @@ func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method == "GET" {
-		files := map[string]string{"/": "web/index.html", "/app.js": "web/app.js", "/i18n.js": "web/i18n.js", "/style.css": "web/style.css", "/icon.png": "web/icon.png", "/presets.json": "web/presets.json", "/default.png": "assets/default.png"}
+		if r.URL.Path == "/scene-layer.png" {
+			index, err := strconv.Atoi(r.URL.Query().Get("index"))
+			var data []byte
+			if err == nil {
+				data, err = installedScenePreview(index, false)
+			}
+			if err != nil {
+				fail(w, 400, err.Error())
+				return
+			}
+			w.Header().Set("Content-Type", "image/png")
+			w.Write(data)
+			return
+		}
+		if r.URL.Path == "/animation-layer.png" || r.URL.Path == "/installed-animation-layer.png" {
+			var data []byte
+			var err error
+			if r.URL.Path == "/installed-animation-layer.png" {
+				var index int
+				index, err = strconv.Atoi(r.URL.Query().Get("index"))
+				if err == nil {
+					data, err = installedAnimationLayerPreview(index)
+				}
+			} else {
+				var size int
+				var fps float64
+				size, err = strconv.Atoi(r.URL.Query().Get("size"))
+				if err == nil {
+					fps, err = strconv.ParseFloat(r.URL.Query().Get("fps"), 64)
+				}
+				if err == nil {
+					data, err = animationLayerPreview(animationSpec{Item: r.URL.Query().Get("item"), Size: size, FPS: fps, Position: position{50, 70}})
+				}
+			}
+			if err != nil {
+				fail(w, 400, err.Error())
+				return
+			}
+			w.Header().Set("Content-Type", "image/png")
+			w.Write(data)
+			return
+		}
+		files := map[string]string{"/": "web/index.html", "/app.js": "web/app.js", "/animations.js": "web/animations.js", "/i18n.js": "web/i18n.js", "/style.css": "web/style.css", "/icon.png": "web/icon.png", "/presets.json": "web/presets.json", "/default.png": "assets/default.png"}
 		if r.URL.Path == "/installed-spinner.png" || (strings.HasPrefix(r.URL.Path, "/spinner/") && strings.HasSuffix(r.URL.Path, ".png")) {
 			var data []byte
 			var err error
@@ -189,8 +242,61 @@ func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		fail(w, 403, "Open the URL printed by the launcher")
 		return
 	}
+	if r.Method == "GET" && r.URL.Path == "/api/layer-source" {
+		index, err := strconv.Atoi(r.URL.Query().Get("index"))
+		var data []byte
+		if err == nil {
+			data, err = installedScenePreview(index, true)
+		}
+		if err != nil {
+			fail(w, 400, err.Error())
+			return
+		}
+		w.Header().Set("Content-Type", http.DetectContentType(data))
+		w.Write(data)
+		return
+	}
+	if r.Method == "POST" && r.URL.Path == "/api/inspect-image" {
+		if origin := r.Header.Get("Origin"); origin != "" && origin != "http://"+a.host {
+			fail(w, 403, "Invalid origin")
+			return
+		}
+		var request struct {
+			Image string `json:"image"`
+		}
+		if err := json.NewDecoder(http.MaxBytesReader(w, r.Body, 17*1024*1024)).Decode(&request); err != nil {
+			fail(w, 400, "Invalid or oversized image")
+			return
+		}
+		raw, cfg, err := decodeSceneImage(request.Image)
+		if err != nil {
+			fail(w, 400, err.Error())
+			return
+		}
+		// Preview the same decoded pixels as Plymouth (including PNG first-frame and JPEG orientation).
+		preview, err := resizePNG(raw, 1920, false)
+		if err != nil {
+			fail(w, 400, err.Error())
+			return
+		}
+		reply(w, 200, map[string]any{"width": cfg.Width, "height": cfg.Height, "preview": base64.StdEncoding.EncodeToString(preview)})
+		return
+	}
 	if r.URL.Path == "/api/preferences" {
 		a.preferences(w, r)
+		return
+	}
+	if r.Method == "GET" && r.URL.Path == "/api/theme-preview" {
+		source := r.URL.Query().Get("source")
+		if source != "current" && source != "default" {
+			fail(w, 400, "Invalid preview source")
+			return
+		}
+		preview := a.themePreview
+		if preview == nil {
+			preview = installedThemePaths().preview
+		}
+		reply(w, 200, preview(source))
 		return
 	}
 	if r.Method == "GET" && r.URL.Path == "/api/window" && a.watch != nil {
@@ -198,13 +304,23 @@ func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method == "GET" && r.URL.Path == "/api/spinners" {
-		reply(w, 200, spinnerCatalog)
+		catalog, err := animationCatalog()
+		if err != nil {
+			fail(w, 500, err.Error())
+			return
+		}
+		reply(w, 200, catalog)
 		return
 	}
 	if r.Method == "GET" && r.URL.Path == "/api/status" {
 		a.mu.Lock()
 		s := a.state
 		a.mu.Unlock()
+		if a.checkHost != nil {
+			if err := a.checkHost(); err != nil {
+				s.HostError = err.Error()
+			}
+		}
 		reply(w, 200, s)
 		return
 	}
@@ -224,8 +340,16 @@ func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		fail(w, 403, "Invalid origin")
 		return
 	}
+	// Report unsupported boot environments before requesting administrator access.
+	// The privileged helper checks again immediately before making changes.
+	if a.checkHost != nil {
+		if err := a.checkHost(); err != nil {
+			fail(w, 409, err.Error())
+			return
+		}
+	}
 	var p payload
-	if err := json.NewDecoder(http.MaxBytesReader(w, r.Body, 17*1024*1024)).Decode(&p); err != nil {
+	if err := json.NewDecoder(http.MaxBytesReader(w, r.Body, sceneRequestLimit)).Decode(&p); err != nil {
 		fail(w, 400, "Invalid or oversized request")
 		return
 	}
@@ -250,7 +374,19 @@ func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		fail(w, 400, err.Error())
 		return
 	}
-	if action == "apply" && (len(p.Image) == 0 || p.Size < 32 || p.Size > 1024) {
+	if action == "apply" && p.Layers != nil {
+		if _, err := resolveSceneLayers(p.Layers); err != nil {
+			fail(w, 400, err.Error())
+			return
+		}
+	}
+	if action == "apply" && p.Layers == nil && p.Animations != nil {
+		if _, err := resolveAnimationLayers(p.Animations); err != nil {
+			fail(w, 400, err.Error())
+			return
+		}
+	}
+	if action == "apply" && p.Layers == nil && (len(p.Image) == 0 || p.Size < 32 || p.Size > 1024) {
 		fail(w, 400, "Select an image and a size between 32 and 1024 pixels")
 		return
 	}
@@ -288,18 +424,22 @@ func (a *app) perform(action string, p payload) {
 	}()
 	path := ""
 	if action == "apply" {
-		var raw, converted []byte
-		raw, err = base64.StdEncoding.DecodeString(p.Image)
-		if err != nil {
-			return
-		}
-		if len(raw) > 12*1024*1024 {
-			err = fmt.Errorf("image exceeds 12 MB")
-			return
-		}
-		converted, err = normalize(raw, p.Size)
-		if err != nil {
-			return
+		if p.Layers == nil {
+			var raw, converted []byte
+			raw, err = base64.StdEncoding.DecodeString(p.Image)
+			if err != nil {
+				return
+			}
+			if len(raw) > 12*1024*1024 {
+				err = fmt.Errorf("image exceeds 12 MB")
+				return
+			}
+			converted, err = normalize(raw, p.Size)
+			if err != nil {
+				return
+			}
+
+			p.Image = base64.StdEncoding.EncodeToString(converted)
 		}
 		var f *os.File
 		f, err = os.CreateTemp("", "plymouth-logo-*.png")
@@ -308,7 +448,6 @@ func (a *app) perform(action string, p payload) {
 		}
 		path = f.Name()
 		defer os.Remove(path)
-		p.Image = base64.StdEncoding.EncodeToString(converted)
 		err = json.NewEncoder(f).Encode(p)
 		closeErr := f.Close()
 		if err == nil {
@@ -384,7 +523,7 @@ func main() {
 	if _, err = rand.Read(key); err != nil {
 		log.Fatal(err)
 	}
-	initial, size, applied := installedPreview(configPath, themeDir+"/watermark.png")
+	initial, size, applied := selectedCustomPreview(installedThemePaths(), themeDir)
 	kernel, _ := exec.Command("uname", "-r").Output()
 	executable, err := os.Executable()
 	if err != nil {
@@ -395,6 +534,10 @@ func main() {
 		log.Fatal(err)
 	}
 	a := &app{preferencesPath: filepath.Join(dataDir, "preferences.json"), token: hex.EncodeToString(key), host: listener.Addr().String(), preview: initial, state: status{OK: true, Message: "Ready", Kernel: strings.TrimSpace(string(kernel)), Prepared: true, Size: size, Applied: applied, Revision: 1, Spinner: installedPosition(applied), Background: installedBackground(applied), SpinnerItem: installedSpinnerItem(applied), SpinnerSize: installedSpinnerSize(applied), LogoPosition: installedLogoPosition(applied)}}
+	a.state.Animations, a.state.AnimationError = installedAnimationLayers(applied)
+	a.state.SpinnerFPS = installedAnimationFPS(applied)
+	a.state.Layers, a.state.LayerError = installedSceneLayers(applied)
+	a.checkHost = checkHost
 	a.execute = func(action, path string) ([]byte, error) {
 		args := []string{executable, "--helper", dataDir, action}
 		if path != "" {

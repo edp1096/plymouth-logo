@@ -83,7 +83,7 @@ func checkHost() error {
 		return fmt.Errorf("use the normal original-kernel boot path first")
 	}
 	if err = command("mountpoint", "-q", "/boot/firmware"); err != nil {
-		return err
+		return fmt.Errorf("boot firmware partition is not mounted")
 	}
 	info, err := os.Lstat(bootImage)
 	if err != nil || !info.Mode().IsRegular() {
@@ -205,7 +205,14 @@ func applyThemeItem(pngData []byte, background, item string, positions ...positi
 	return applyThemeSized(pngData, background, item, 0, positions...)
 }
 
-func applyThemeSized(pngData []byte, background, item string, size int, positions ...position) (err error) {
+func applyThemeSized(pngData []byte, background, item string, size int, positions ...position) error {
+	return applyThemeState(pngData, background, item, size, nil, positions...)
+}
+
+func applyThemeState(pngData []byte, background, item string, size int, specs []animationSpec, positions ...position) error {
+	return applyThemeComposition(pngData, background, item, size, specs, nil, positions...)
+}
+func applyThemeComposition(pngData []byte, background, item string, size int, specs []animationSpec, scenes []sceneSpec, positions ...position) (err error) {
 	size, err = spinnerSize(item, size)
 	if err != nil {
 		return err
@@ -232,8 +239,23 @@ func applyThemeSized(pngData []byte, background, item string, size int, position
 	if _, err = logoPosition(&lp); err != nil {
 		return err
 	}
+	var resolvedScene []sceneLayer
+	if scenes != nil {
+		resolvedScene, err = resolveSceneLayers(scenes)
+		if err != nil {
+			return err
+		}
+		pngData = transparentWatermark()
+	}
+	var layers []animationLayer
+	if scenes == nil && specs != nil {
+		layers, err = resolveAnimationLayers(specs)
+		if err != nil {
+			return err
+		}
+	}
 	var animation spinnerEntry
-	if item != "default" {
+	if scenes == nil && specs == nil && item != "default" {
 		animation, err = spinnerMetadata(item)
 		if err != nil {
 			return err
@@ -290,8 +312,35 @@ func applyThemeSized(pngData []byte, background, item string, size int, position
 		}
 	}
 
-	if err = installSpinnerItem(themeDir, item, size); err != nil {
-		return err
+	if scenes != nil {
+		if err = installSceneLayers(themeDir, resolvedScene); err != nil {
+			return err
+		}
+		if err = os.Remove(filepath.Join(themeDir, "animations.json")); err != nil && !os.IsNotExist(err) {
+			return err
+		}
+	} else {
+		if err = os.Remove(filepath.Join(themeDir, "layers.json")); err != nil && !os.IsNotExist(err) {
+			return err
+		}
+		if err = os.RemoveAll(filepath.Join(themeDir, "sources")); err != nil {
+			return err
+		}
+		if specs != nil {
+			if err = installAnimationLayers(themeDir, layers); err != nil {
+				return err
+			}
+		} else {
+			if err = os.RemoveAll(filepath.Join(themeDir, "animations")); err != nil {
+				return err
+			}
+			if err = os.Remove(filepath.Join(themeDir, "animations.json")); err != nil && !os.IsNotExist(err) {
+				return err
+			}
+			if err = installSpinnerItem(themeDir, item, size); err != nil {
+				return err
+			}
+		}
 	}
 	if err = atomicWrite(themeDir+"/watermark.png", pngData, 0644); err != nil {
 		return err
@@ -302,9 +351,15 @@ func applyThemeSized(pngData []byte, background, item string, size int, position
 	}
 	text := strings.NewReplacer("Name=BGRT", "Name=OPi custom logo", "ImageDir=/usr/share/plymouth/themes/spinner", "ImageDir="+themeDir, "WatermarkVerticalAlignment=.96", "WatermarkVerticalAlignment=.5", "UseFirmwareBackground=true", "UseFirmwareBackground=false", "DialogClearsFirmwareBackground=false", "DialogClearsFirmwareBackground=true").Replace(string(template))
 	text = themeBackground(themeLogoPosition(themePosition(text, p), lp), background)
-	if item != "default" {
+	if scenes != nil || specs != nil || item != "default" {
 		var script string
-		text, script = scriptTheme(animation, background, p, lp)
+		if scenes != nil {
+			text, script = sceneScriptTheme(resolvedScene, background)
+		} else if specs != nil {
+			text, script = multiScriptTheme(layers, background, lp)
+		} else {
+			text, script = scriptTheme(animation, background, p, lp)
+		}
 		if err = atomicWrite(themeDir+"/opi-custom-logo.script", []byte(script), 0644); err != nil {
 			return err
 		}
@@ -343,7 +398,15 @@ func applyThemeSized(pngData []byte, background, item string, size int, position
 	if !strings.Contains(string(listing), "usr/share/plymouth/themes/opi-custom-logo/watermark.png") || !strings.Contains(string(listing), "lib/modules/"+kernelVersion) {
 		return fmt.Errorf("generated initramfs is missing the logo or matching modules")
 	}
-	if item != "default" {
+	if scenes != nil {
+		if err = verifyLayerArchive(string(listing), sceneAnimations(resolvedScene), "layers.json"); err != nil {
+			return err
+		}
+	} else if specs != nil {
+		if err = verifyAnimationArchive(string(listing), layers); err != nil {
+			return err
+		}
+	} else if item != "default" {
 		for _, required := range []string{"/plymouth/script.so", "/plymouth/label.so", "usr/share/plymouth/themes/opi-custom-logo/opi-custom-logo.script", fmt.Sprintf("usr/share/plymouth/themes/opi-custom-logo/throbber-%04d.png", animation.Frames)} {
 			if !strings.Contains(string(listing), required) {
 				return fmt.Errorf("generated initramfs is missing %s", required)
@@ -429,13 +492,16 @@ func helper(args []string) error {
 	if len(args) != 2 {
 		return fmt.Errorf("apply requires an image")
 	}
-	raw, err := readLimited(args[1], 17*1024*1024)
+	raw, err := readLimited(args[1], sceneRequestLimit)
 	if err != nil {
 		return err
 	}
 	var request payload
 	if err = json.Unmarshal(raw, &request); err != nil {
 		return err
+	}
+	if request.Layers != nil {
+		return applyThemeComposition(nil, request.Background, "default", 32, nil, request.Layers)
 	}
 	pos, err := spinnerPosition(request.Spinner)
 	if err != nil {
@@ -453,7 +519,7 @@ func helper(args []string) error {
 	if err != nil {
 		return err
 	}
-	return applyThemeSized(data, request.Background, request.SpinnerItem, request.SpinnerSize, pos, lp)
+	return applyThemeState(data, request.Background, request.SpinnerItem, request.SpinnerSize, request.Animations, pos, lp)
 }
 
 // Earlier versions did not record a permanent original pointer. Find the earliest

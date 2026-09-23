@@ -30,17 +30,24 @@ op = fn('script_parse_file', P, C.c_char_p)(sys.argv[2].encode())
 assert op, 'Generated script failed the installed Plymouth parser'
 result = fn('script_execute', Result, P, P)(state, op)
 assert result.kind == 0, ('script execution failed', result.kind)
+scene = len(sys.argv) > 4 and sys.argv[4] == 'scene'
+count = 3 if scene else int(sys.argv[4]) if len(sys.argv) > 4 else 1
 global_obj = C.cast(state, C.POINTER(State)).contents.global_obj
 get = fn('script_obj_hash_get_number', C.c_double, P, C.c_char_p)
 refresh = fn('script_lib_plymouth_on_refresh', None, P, P)
+if len(sys.argv) > 4:
+    for i in range(count):
+        assert get(global_obj, ('loaded_width_'+str(i)).encode()) == 80, 'nested frame path did not load'
+        assert get(global_obj, ('loaded_height_'+str(i)).encode()) == 40, 'nested frame dimensions incorrect'
 for _ in range(60):
     refresh(state, ply)
-assert math.isclose(get(global_obj, b'phase'), 10.0, abs_tol=1e-6), 'FPS timing was not executed'
+for i, expected in enumerate(([0.0, 10.0, 0.0] if scene else [10.0, 7.0][:count])):
+    assert math.isclose(get(global_obj, ('phase_'+str(i)).encode()), expected, abs_tol=1e-6), 'independent FPS timing failed'
 fn('script_lib_plymouth_on_display_password', None, P, P, C.c_char_p, C.c_int)(state, ply, b'Password:', 4)
 assert get(global_obj, b'dialog_active') == 1, 'password callback missing'
-phase = get(global_obj, b'phase')
+phases = [get(global_obj, ('phase_'+str(i)).encode()) for i in range(count)]
 refresh(state, ply)
-assert get(global_obj, b'phase') == phase, 'animation did not pause for password'
+assert phases == [get(global_obj, ('phase_'+str(i)).encode()) for i in range(count)], 'animations did not pause for password'
 fn('script_lib_plymouth_on_display_question', None, P, P, C.c_char_p, C.c_char_p)(state, ply, b'Question:', b'answer')
 fn('script_lib_plymouth_on_display_message', None, P, P, C.c_char_p)(state, ply, b'Boot message')
 fn('script_lib_plymouth_on_hide_message', None, P, P, C.c_char_p)(state, ply, b'Boot message')
@@ -48,6 +55,10 @@ fn('script_lib_plymouth_on_display_normal', None, P, P)(state, ply)
 assert get(global_obj, b'dialog_active') == 0, 'normal display did not resume'
 for _ in range(60):
     refresh(state, ply)
-assert math.isclose(get(global_obj, b'phase'), 8.0, abs_tol=1e-6), 'animation wrap did not execute'
+for i, expected in enumerate(([0.0, 8.0, 0.0] if scene else [8.0, 5.0][:count])):
+    assert math.isclose(get(global_obj, ('phase_'+str(i)).encode()), expected, abs_tol=1e-6), 'independent animation wrap failed'
 fn('script_lib_plymouth_on_quit', None, P, P)(state, ply)
+phases = [get(global_obj, ('phase_'+str(i)).encode()) for i in range(count)]
+refresh(state, ply)
+assert phases == [get(global_obj, ('phase_'+str(i)).encode()) for i in range(count)], 'quit did not stop animations'
 print('Installed Plymouth: parser, frame timing, wrap, password, question, message and quit callbacks passed')

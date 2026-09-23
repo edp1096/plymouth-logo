@@ -1,6 +1,8 @@
 ![screenshot](./docs/screenshot.png)
 
-App for customizing Plymouth boot screen.
+App for customizing Plymouth boot screen. Arrange up to 8 images and 8 animations in one layer list, with independent position, size, and animation speed. PNG transparency and image proportions are preserved.
+
+Use **Add image** for PNG/JPG files and **Add animation** for existing animations. Select a layer to edit it, replace an image, move it forward/backward, or remove it. Applied image originals are saved for later editing and restoration.
 
 ## Run
 

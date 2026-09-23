@@ -59,6 +59,42 @@ func TestHTTPGuards(t *testing.T) {
 		}
 	}
 }
+
+func TestHostPreflight(t *testing.T) {
+	var hostErr error = fmt.Errorf("cancel pending kernel trials first")
+	a := &app{host: "localhost", token: "secret", checkHost: func() error { return hostErr },
+		execute: func(string, string) ([]byte, error) {
+			t.Error("unsupported host must not request administrator authentication")
+			return nil, nil
+		}}
+	request := func(method, path, body string) *httptest.ResponseRecorder {
+		r := httptest.NewRequest(method, "http://localhost"+path, strings.NewReader(body))
+		r.Header.Set("X-App-Token", "secret")
+		w := httptest.NewRecorder()
+		a.ServeHTTP(w, r)
+		return w
+	}
+	w := request("GET", "/api/status", "")
+	var state status
+	if err := json.Unmarshal(w.Body.Bytes(), &state); err != nil || state.HostError != hostErr.Error() {
+		t.Fatal(w.Body.String(), err)
+	}
+	for _, action := range []string{"apply", "restore", "restore-original"} {
+		w = request("POST", "/api/"+action, "{}")
+		if w.Code != 409 || !strings.Contains(w.Body.String(), hostErr.Error()) || a.state.Busy {
+			t.Fatal(action, w.Code, w.Body.String())
+		}
+	}
+	// A cancelled trial can be cleared without restarting the application.
+	hostErr = nil
+	w = request("GET", "/api/status", "")
+	if err := json.Unmarshal(w.Body.Bytes(), &state); err != nil || state.HostError != "" {
+		t.Fatal(w.Body.String(), err)
+	}
+	if w = request("POST", "/api/apply", "{}"); w.Code != 400 {
+		t.Fatal("supported host must reach payload validation", w.Code)
+	}
+}
 func TestEmbeddedUI(t *testing.T) {
 	a := &app{host: "127.0.0.1:8090"}
 	r := httptest.NewRequest("GET", "http://127.0.0.1:8090/", nil)
@@ -174,6 +210,45 @@ func TestBackupRestoreAndRollback(t *testing.T) {
 	data, _ = os.ReadFile(bootImage)
 	if string(data) != "original initrd" || exists(themeDir) || exists(hookPath) {
 		t.Fatal("script rollback did not restore original state")
+	}
+
+	// Multi-layer staging and legacy conversion must restore the complete old theme on failure.
+	os.MkdirAll(themeDir+"/animations/sentinel", 0755)
+	os.WriteFile(themeDir+"/animations/sentinel/old", []byte("old animation"), 0644)
+	os.WriteFile(themeDir+"/animations.json", []byte("old manifest"), 0644)
+	for _, modern := range []bool{true, false} {
+		reached := false
+		command = func(name string, args ...string) error {
+			if name != "mkinitramfs" {
+				return oldCommand(name, args...)
+			}
+			reached = true
+			if modern {
+				layers, e := readAnimationManifest(themeDir)
+				if e != nil || len(layers) != 2 || layers[1].FPS != 7 {
+					t.Fatal("multi-layer staging failed", layers, e)
+				}
+				if !exists(filepath.Join(themeDir, animationFrameName(1, 2))) {
+					t.Fatal("second animation missing")
+				}
+			} else if exists(themeDir+"/animations.json") || exists(themeDir+"/animations") {
+				t.Fatal("legacy conversion left stale layers")
+			}
+			return fmt.Errorf("simulated multi-layer build failure")
+		}
+		var specs []animationSpec
+		if modern {
+			specs = []animationSpec{{Item: "default", Size: 32, FPS: 10, Position: position{20, 80}}, {Item: "default", Size: 32, FPS: 7, Position: position{80, 20}}}
+		}
+		if err = applyThemeState(sample(), "#123456", "default", 32, specs); err == nil || !reached {
+			t.Fatal("build failure not reached", err)
+		}
+		manifest, _ := os.ReadFile(themeDir + "/animations.json")
+		frame, _ := os.ReadFile(themeDir + "/animations/sentinel/old")
+		image, _ := os.ReadFile(bootImage)
+		if string(manifest) != "old manifest" || string(frame) != "old animation" || string(image) != "original initrd" {
+			t.Fatal("complete prior theme not restored")
+		}
 	}
 	os.WriteFile(backup+"/initrd.img", []byte("tampered"), 0644)
 	if err = restoreBackup(backup); err == nil {

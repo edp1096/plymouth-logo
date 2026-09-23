@@ -1,0 +1,3459 @@
+{
+  "commit": "5d8817458d764bff4ff9daae94cf1bbaabf16ede",
+  "themes": [
+    {
+      "theme": "abstract_ring",
+      "pack": "pack_1",
+      "frames": 41,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "41"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 41]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 41
+      },
+      "modes": {
+        "P": 41
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 41,
+      "errors": [],
+      "decoded_bytes": 78720000,
+      "png_bytes": 3672281,
+      "other_files": [
+        "LICENSE",
+        "abstract_ring.plymouth",
+        "abstract_ring.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 41,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "abstract_ring_alt",
+      "pack": "pack_1",
+      "frames": 76,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "76"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 76]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 76
+      },
+      "modes": {
+        "L": 76
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 76,
+      "errors": [],
+      "decoded_bytes": 64812800,
+      "png_bytes": 3842172,
+      "other_files": [
+        "LICENSE",
+        "abstract_ring_alt.plymouth",
+        "abstract_ring_alt.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 76,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "alienware",
+      "pack": "pack_1",
+      "frames": 24,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "24"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 3) % 24]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x500": 24
+      },
+      "modes": {
+        "L": 24
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 24,
+      "errors": [],
+      "decoded_bytes": 24000000,
+      "png_bytes": 1300752,
+      "other_files": [
+        "LICENSE",
+        "alienware.plymouth",
+        "alienware.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 3.0,
+      "declared_frames": 24,
+      "nominal_fps_at_50hz": 16.666666666666668,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "angular",
+      "pack": "pack_1",
+      "frames": 30,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "30"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 30]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x400": 30
+      },
+      "modes": {
+        "P": 30
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 30,
+      "errors": [],
+      "decoded_bytes": 19200000,
+      "png_bytes": 1074442,
+      "other_files": [
+        "LICENSE",
+        "angular.plymouth",
+        "angular.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 30,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "angular_alt",
+      "pack": "pack_1",
+      "frames": 61,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "61"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 61]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x400": 61
+      },
+      "modes": {
+        "P": 61
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 61,
+      "errors": [],
+      "decoded_bytes": 39040000,
+      "png_bytes": 1101024,
+      "other_files": [
+        "LICENSE",
+        "angular_alt.plymouth",
+        "angular_alt.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 61,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "black_hud",
+      "pack": "pack_1",
+      "frames": 164,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "164"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 164]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 164
+      },
+      "modes": {
+        "L": 160,
+        "1": 4
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 164,
+      "errors": [],
+      "decoded_bytes": 139859200,
+      "png_bytes": 628432,
+      "other_files": [
+        "LICENSE",
+        "black_hud.plymouth",
+        "black_hud.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 164,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "blockchain",
+      "pack": "pack_1",
+      "frames": 68,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "68"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 68]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 68
+      },
+      "modes": {
+        "P": 68
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 68,
+      "errors": [],
+      "decoded_bytes": 130560000,
+      "png_bytes": 590000,
+      "other_files": [
+        "LICENSE",
+        "blockchain.plymouth",
+        "blockchain.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 68,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "circle",
+      "pack": "pack_1",
+      "frames": 101,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "101"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 101]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x375": 101
+      },
+      "modes": {
+        "P": 101
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 101,
+      "errors": [],
+      "decoded_bytes": 75750000,
+      "png_bytes": 2103723,
+      "other_files": [
+        "LICENSE",
+        "circle.plymouth",
+        "circle.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 101,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "circle_alt",
+      "pack": "pack_1",
+      "frames": 48,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "48"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 48]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "512x360": 48
+      },
+      "modes": {
+        "RGB": 48
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 48,
+      "errors": [],
+      "decoded_bytes": 35389440,
+      "png_bytes": 3576000,
+      "other_files": [
+        "LICENSE",
+        "circle_alt.plymouth",
+        "circle_alt.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 48,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "circle_flow",
+      "pack": "pack_1",
+      "frames": 72,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "72"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 72]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x400": 72
+      },
+      "modes": {
+        "P": 72
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 72,
+      "errors": [],
+      "decoded_bytes": 46080000,
+      "png_bytes": 906987,
+      "other_files": [
+        "LICENSE",
+        "circle_flow.plymouth",
+        "circle_flow.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 72,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "circle_hud",
+      "pack": "pack_1",
+      "frames": 156,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "156"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 156]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 156
+      },
+      "modes": {
+        "L": 141,
+        "1": 15
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 156,
+      "errors": [],
+      "decoded_bytes": 133036800,
+      "png_bytes": 566153,
+      "other_files": [
+        "LICENSE",
+        "circle_hud.plymouth",
+        "circle_hud.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 156,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "circuit",
+      "pack": "pack_1",
+      "frames": 96,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "96"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 96]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x500": 96
+      },
+      "modes": {
+        "RGB": 96
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 96,
+      "errors": [],
+      "decoded_bytes": 96000000,
+      "png_bytes": 3878346,
+      "other_files": [
+        "LICENSE",
+        "circuit.plymouth",
+        "circuit.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 96,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "colorful",
+      "pack": "pack_1",
+      "frames": 375,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "375"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 375]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x400": 375
+      },
+      "modes": {
+        "1": 18,
+        "P": 357
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 375,
+      "errors": [],
+      "decoded_bytes": 240000000,
+      "png_bytes": 4664789,
+      "other_files": [
+        "LICENSE",
+        "colorful.plymouth",
+        "colorful.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 375,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "colorful_loop",
+      "pack": "pack_1",
+      "frames": 89,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "89"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 89]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "450x450": 89
+      },
+      "modes": {
+        "1": 1,
+        "P": 52,
+        "RGB": 36
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 89,
+      "errors": [],
+      "decoded_bytes": 72090000,
+      "png_bytes": 660345,
+      "other_files": [
+        "LICENSE",
+        "colorful_loop.plymouth",
+        "colorful_loop.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 89,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "colorful_sliced",
+      "pack": "pack_1",
+      "frames": 120,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "120"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 120]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x500": 120
+      },
+      "modes": {
+        "RGB": 120
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 0,
+      "errors": [],
+      "decoded_bytes": 120000000,
+      "png_bytes": 4703806,
+      "other_files": [
+        "LICENSE",
+        "colorful_sliced.plymouth",
+        "colorful_sliced.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 120,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "connect",
+      "pack": "pack_1",
+      "frames": 120,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "120"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 120]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 120
+      },
+      "modes": {
+        "P": 120
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 120,
+      "errors": [],
+      "decoded_bytes": 230400000,
+      "png_bytes": 2199235,
+      "other_files": [
+        "LICENSE",
+        "connect.plymouth",
+        "connect.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 120,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "cross_hud",
+      "pack": "pack_1",
+      "frames": 210,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "210"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 210]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 210
+      },
+      "modes": {
+        "L": 191,
+        "1": 19
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 210,
+      "errors": [],
+      "decoded_bytes": 403200000,
+      "png_bytes": 360532,
+      "other_files": [
+        "LICENSE",
+        "cross_hud.plymouth",
+        "cross_hud.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 210,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "cubes",
+      "pack": "pack_1",
+      "frames": 81,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "81"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 81]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x330": 81
+      },
+      "modes": {
+        "P": 81
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 81,
+      "errors": [],
+      "decoded_bytes": 53460000,
+      "png_bytes": 1008322,
+      "other_files": [
+        "LICENSE",
+        "cubes.plymouth",
+        "cubes.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 81,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "cuts",
+      "pack": "pack_1",
+      "frames": 63,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "62"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 62]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "600x600": 63
+      },
+      "modes": {
+        "P": 63
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 63,
+      "errors": [],
+      "decoded_bytes": 90720000,
+      "png_bytes": 133364,
+      "other_files": [
+        "LICENSE",
+        "cuts.plymouth",
+        "cuts.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 62,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": [
+        62
+      ]
+    },
+    {
+      "theme": "cuts_alt",
+      "pack": "pack_1",
+      "frames": 41,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "41"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 41]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 41
+      },
+      "modes": {
+        "L": 41
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 41,
+      "errors": [],
+      "decoded_bytes": 78720000,
+      "png_bytes": 176015,
+      "other_files": [
+        "LICENSE",
+        "cuts_alt.plymouth",
+        "cuts_alt.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 41,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "cyanide",
+      "pack": "pack_2",
+      "frames": 24,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "24"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 24]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "450x450": 24
+      },
+      "modes": {
+        "RGB": 24
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 24,
+      "errors": [],
+      "decoded_bytes": 19440000,
+      "png_bytes": 2167148,
+      "other_files": [
+        "LICENSE",
+        "cyanide.plymouth",
+        "cyanide.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 24,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "cybernetic",
+      "pack": "pack_2",
+      "frames": 201,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "201"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 201]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "850x160": 201
+      },
+      "modes": {
+        "P": 201
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 0,
+      "errors": [],
+      "decoded_bytes": 109344000,
+      "png_bytes": 2292334,
+      "other_files": [
+        "LICENSE",
+        "cybernetic.plymouth",
+        "cybernetic.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 201,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "dark_planet",
+      "pack": "pack_2",
+      "frames": 160,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "160"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 1.5) % 160]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "467x350": 160
+      },
+      "modes": {
+        "RGB": 160
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 160,
+      "errors": [],
+      "decoded_bytes": 104608000,
+      "png_bytes": 10475954,
+      "other_files": [
+        "LICENSE",
+        "dark_planet.plymouth",
+        "dark_planet.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 1.5,
+      "declared_frames": 160,
+      "nominal_fps_at_50hz": 33.333333333333336,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "darth_vader",
+      "pack": "pack_2",
+      "frames": 115,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "115"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 115]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x300": 115
+      },
+      "modes": {
+        "L": 115
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 115,
+      "errors": [],
+      "decoded_bytes": 55200000,
+      "png_bytes": 880913,
+      "other_files": [
+        "LICENSE",
+        "darth_vader.plymouth",
+        "darth_vader.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 115,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "deus_ex",
+      "pack": "pack_2",
+      "frames": 375,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "375"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 375]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 375
+      },
+      "modes": {
+        "P": 375
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 375,
+      "errors": [],
+      "decoded_bytes": 720000000,
+      "png_bytes": 3445977,
+      "other_files": [
+        "LICENSE",
+        "deus_ex.plymouth",
+        "deus_ex.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 375,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "dna",
+      "pack": "pack_2",
+      "frames": 26,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "26"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 26]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x500": 26
+      },
+      "modes": {
+        "P": 26
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 26,
+      "errors": [],
+      "decoded_bytes": 26000000,
+      "png_bytes": 614471,
+      "other_files": [
+        "LICENSE",
+        "dna.plymouth",
+        "dna.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 26,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "double",
+      "pack": "pack_2",
+      "frames": 40,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "40"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 3) % 40]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "600x338": 40
+      },
+      "modes": {
+        "P": 40
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 40,
+      "errors": [],
+      "decoded_bytes": 32448000,
+      "png_bytes": 288614,
+      "other_files": [
+        "LICENSE",
+        "double.plymouth",
+        "double.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 3.0,
+      "declared_frames": 40,
+      "nominal_fps_at_50hz": 16.666666666666668,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "dragon",
+      "pack": "pack_2",
+      "frames": 94,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "94"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 94]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x500": 94
+      },
+      "modes": {
+        "P": 94
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 0,
+      "errors": [],
+      "decoded_bytes": 94000000,
+      "png_bytes": 3556084,
+      "other_files": [
+        "LICENSE",
+        "dragon.plymouth",
+        "dragon.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 94,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "flame",
+      "pack": "pack_2",
+      "frames": 25,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "25"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 25]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x400": 25
+      },
+      "modes": {
+        "RGB": 25
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 25,
+      "errors": [],
+      "decoded_bytes": 16000000,
+      "png_bytes": 1135003,
+      "other_files": [
+        "LICENSE",
+        "flame.plymouth",
+        "flame.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 25,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "glitch",
+      "pack": "pack_2",
+      "frames": 33,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "33"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 3) % 33]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "600x338": 33
+      },
+      "modes": {
+        "P": 33
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 33,
+      "errors": [],
+      "decoded_bytes": 26769600,
+      "png_bytes": 1338540,
+      "other_files": [
+        "LICENSE",
+        "glitch.plymouth",
+        "glitch.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 3.0,
+      "declared_frames": 33,
+      "nominal_fps_at_50hz": 16.666666666666668,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "glowing",
+      "pack": "pack_2",
+      "frames": 38,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "38"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 38]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "450x450": 38
+      },
+      "modes": {
+        "RGB": 38
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 38,
+      "errors": [],
+      "decoded_bytes": 30780000,
+      "png_bytes": 8336594,
+      "other_files": [
+        "LICENSE",
+        "glowing.plymouth",
+        "glowing.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 38,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "green_blocks",
+      "pack": "pack_2",
+      "frames": 125,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "125"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 125]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "540x540": 125
+      },
+      "modes": {
+        "P": 125
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 125,
+      "errors": [],
+      "decoded_bytes": 145800000,
+      "png_bytes": 1684925,
+      "other_files": [
+        "LICENSE",
+        "green_blocks.plymouth",
+        "green_blocks.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 125,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "green_loader",
+      "pack": "pack_2",
+      "frames": 40,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "40"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 40]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 40
+      },
+      "modes": {
+        "P": 40
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 40,
+      "errors": [],
+      "decoded_bytes": 76800000,
+      "png_bytes": 281827,
+      "other_files": [
+        "LICENSE",
+        "green_loader.plymouth",
+        "green_loader.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 40,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hexagon",
+      "pack": "pack_2",
+      "frames": 16,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "16"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 16]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "1080x1080": 16
+      },
+      "modes": {
+        "RGB": 16
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 0,
+      "errors": [],
+      "decoded_bytes": 74649600,
+      "png_bytes": 554952,
+      "other_files": [
+        "LICENSE",
+        "hexagon.plymouth",
+        "hexagon.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 16,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hexagon_2",
+      "pack": "pack_2",
+      "frames": 100,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "100"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 1) % 100]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 100
+      },
+      "modes": {
+        "RGB": 100
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 100,
+      "errors": [],
+      "decoded_bytes": 85280000,
+      "png_bytes": 1918640,
+      "other_files": [
+        "LICENSE",
+        "hexagon_2.plymouth",
+        "hexagon_2.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 1.0,
+      "declared_frames": 100,
+      "nominal_fps_at_50hz": 50.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hexagon_alt",
+      "pack": "pack_2",
+      "frames": 119,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "119"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 119]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "350x350": 119
+      },
+      "modes": {
+        "RGB": 119
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 119,
+      "errors": [],
+      "decoded_bytes": 58310000,
+      "png_bytes": 2443638,
+      "other_files": [
+        "LICENSE",
+        "hexagon_alt.plymouth",
+        "hexagon_alt.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 119,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hexagon_dots",
+      "pack": "pack_2",
+      "frames": 32,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "32"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 32]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 32
+      },
+      "modes": {
+        "L": 32
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 32,
+      "errors": [],
+      "decoded_bytes": 61440000,
+      "png_bytes": 483261,
+      "other_files": [
+        "LICENSE",
+        "hexagon_dots.plymouth",
+        "hexagon_dots.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 32,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hexagon_dots_alt",
+      "pack": "pack_2",
+      "frames": 181,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "130"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 130]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 181
+      },
+      "modes": {
+        "L": 181
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 181,
+      "errors": [],
+      "decoded_bytes": 347520000,
+      "png_bytes": 1561449,
+      "other_files": [
+        "LICENSE",
+        "hexagon_dots_alt.plymouth",
+        "hexagon_dots_alt.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 130,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": [
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180
+      ]
+    },
+    {
+      "theme": "hexagon_hud",
+      "pack": "pack_2",
+      "frames": 205,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "205"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 205]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 205
+      },
+      "modes": {
+        "L": 196,
+        "1": 9
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 205,
+      "errors": [],
+      "decoded_bytes": 174824000,
+      "png_bytes": 659799,
+      "other_files": [
+        "LICENSE",
+        "hexagon_hud.plymouth",
+        "hexagon_hud.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 205,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hexagon_red",
+      "pack": "pack_2",
+      "frames": 75,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "75"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 75]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 75
+      },
+      "modes": {
+        "P": 75
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 75,
+      "errors": [],
+      "decoded_bytes": 144000000,
+      "png_bytes": 443355,
+      "other_files": [
+        "LICENSE",
+        "hexagon_red.plymouth",
+        "hexagon_red.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 75,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hexa_retro",
+      "pack": "pack_3",
+      "frames": 90,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "90"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 90]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x500": 90
+      },
+      "modes": {
+        "P": 90
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 90,
+      "errors": [],
+      "decoded_bytes": 90000000,
+      "png_bytes": 2308439,
+      "other_files": [
+        "LICENSE",
+        "hexa_retro.plymouth",
+        "hexa_retro.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 90,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hud",
+      "pack": "pack_3",
+      "frames": 20,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "20"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 3) % 20]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "300x300": 20
+      },
+      "modes": {
+        "RGBA": 20
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 20,
+      "errors": [],
+      "decoded_bytes": 7200000,
+      "png_bytes": 680030,
+      "other_files": [
+        "LICENSE",
+        "hud.plymouth",
+        "hud.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 3.0,
+      "declared_frames": 20,
+      "nominal_fps_at_50hz": 16.666666666666668,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hud_2",
+      "pack": "pack_3",
+      "frames": 40,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "40"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 5) % 40]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 40
+      },
+      "modes": {
+        "P": 40
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 37,
+      "errors": [],
+      "decoded_bytes": 76800000,
+      "png_bytes": 3081476,
+      "other_files": [
+        "LICENSE",
+        "hud_2.plymouth",
+        "hud_2.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 5.0,
+      "declared_frames": 40,
+      "nominal_fps_at_50hz": 10.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hud_3",
+      "pack": "pack_3",
+      "frames": 125,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "125"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 125]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 125
+      },
+      "modes": {
+        "L": 125
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 125,
+      "errors": [],
+      "decoded_bytes": 240000000,
+      "png_bytes": 3333878,
+      "other_files": [
+        "LICENSE",
+        "hud_3.plymouth",
+        "hud_3.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 125,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "hud_space",
+      "pack": "pack_3",
+      "frames": 119,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "119"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 119]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 119
+      },
+      "modes": {
+        "L": 119
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 119,
+      "errors": [],
+      "decoded_bytes": 101483200,
+      "png_bytes": 1386254,
+      "other_files": [
+        "LICENSE",
+        "hud_space.plymouth",
+        "hud_space.script",
+        "large_icons"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 119,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "ibm",
+      "pack": "pack_3",
+      "frames": 48,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "48"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 48]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "333x333": 48
+      },
+      "modes": {
+        "P": 48
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 48,
+      "errors": [],
+      "decoded_bytes": 21290688,
+      "png_bytes": 451629,
+      "other_files": [
+        "LICENSE",
+        "ibm.plymouth",
+        "ibm.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 48,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "infinite_seal",
+      "pack": "pack_3",
+      "frames": 540,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "540"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 1) % 540]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "640x360": 540
+      },
+      "modes": {
+        "P": 540
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 540,
+      "errors": [],
+      "decoded_bytes": 497664000,
+      "png_bytes": 20695990,
+      "other_files": [
+        "LICENSE",
+        "infinite_seal.plymouth",
+        "infinite_seal.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 1.0,
+      "declared_frames": 540,
+      "nominal_fps_at_50hz": 50.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "ironman",
+      "pack": "pack_3",
+      "frames": 100,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "100"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 3) % 100]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "720x720": 100
+      },
+      "modes": {
+        "RGBA": 100
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 100,
+      "errors": [],
+      "decoded_bytes": 207360000,
+      "png_bytes": 18464676,
+      "other_files": [
+        "LICENSE",
+        "ironman.plymouth",
+        "ironman.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 3.0,
+      "declared_frames": 100,
+      "nominal_fps_at_50hz": 16.666666666666668,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "liquid",
+      "pack": "pack_3",
+      "frames": 19,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "19"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 3) % 19]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 19
+      },
+      "modes": {
+        "RGB": 19
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 19,
+      "errors": [],
+      "decoded_bytes": 16203200,
+      "png_bytes": 310462,
+      "other_files": [
+        "LICENSE",
+        "large_icons",
+        "liquid.plymouth",
+        "liquid.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 3.0,
+      "declared_frames": 19,
+      "nominal_fps_at_50hz": 16.666666666666668,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "loader",
+      "pack": "pack_3",
+      "frames": 105,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "105"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 105]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 105
+      },
+      "modes": {
+        "P": 105
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 105,
+      "errors": [],
+      "decoded_bytes": 201600000,
+      "png_bytes": 3256660,
+      "other_files": [
+        "LICENSE",
+        "loader.plymouth",
+        "loader.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 105,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "loader_2",
+      "pack": "pack_3",
+      "frames": 50,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "50"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 50]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x300": 50
+      },
+      "modes": {
+        "P": 50
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 50,
+      "errors": [],
+      "decoded_bytes": 24000000,
+      "png_bytes": 863111,
+      "other_files": [
+        "LICENSE",
+        "loader_2.plymouth",
+        "loader_2.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 50,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "loader_alt",
+      "pack": "pack_3",
+      "frames": 87,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "87"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 87]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 87
+      },
+      "modes": {
+        "P": 87
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 87,
+      "errors": [],
+      "decoded_bytes": 167040000,
+      "png_bytes": 1628546,
+      "other_files": [
+        "LICENSE",
+        "loader_alt.plymouth",
+        "loader_alt.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 87,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "lone",
+      "pack": "pack_3",
+      "frames": 64,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "64"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 64]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x500": 64
+      },
+      "modes": {
+        "L": 64
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 64,
+      "errors": [],
+      "decoded_bytes": 64000000,
+      "png_bytes": 790679,
+      "other_files": [
+        "LICENSE",
+        "lone.plymouth",
+        "lone.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 64,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "metal_ball",
+      "pack": "pack_3",
+      "frames": 100,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "100"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 100]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 100
+      },
+      "modes": {
+        "RGB": 100
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 100,
+      "errors": [],
+      "decoded_bytes": 85280000,
+      "png_bytes": 10268663,
+      "other_files": [
+        "LICENSE",
+        "large_icons",
+        "metal_ball.plymouth",
+        "metal_ball.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 100,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "motion",
+      "pack": "pack_3",
+      "frames": 60,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "60"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 60]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x300": 60
+      },
+      "modes": {
+        "P": 60
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 60,
+      "errors": [],
+      "decoded_bytes": 28800000,
+      "png_bytes": 1570850,
+      "other_files": [
+        "LICENSE",
+        "motion.plymouth",
+        "motion.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 60,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "optimus",
+      "pack": "pack_3",
+      "frames": 163,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "163"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 3) % 163]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 163
+      },
+      "modes": {
+        "P": 163
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 163,
+      "errors": [],
+      "decoded_bytes": 312960000,
+      "png_bytes": 1823334,
+      "other_files": [
+        "LICENSE",
+        "optimus.plymouth",
+        "optimus.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 3.0,
+      "declared_frames": 163,
+      "nominal_fps_at_50hz": 16.666666666666668,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "owl",
+      "pack": "pack_3",
+      "frames": 151,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "151"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 151]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 151
+      },
+      "modes": {
+        "RGB": 151
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 151,
+      "errors": [],
+      "decoded_bytes": 128772800,
+      "png_bytes": 15172462,
+      "other_files": [
+        "LICENSE",
+        "owl.plymouth",
+        "owl.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 151,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "pie",
+      "pack": "pack_3",
+      "frames": 120,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "120"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 1) % 120]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x500": 120
+      },
+      "modes": {
+        "P": 120
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 0,
+      "errors": [],
+      "decoded_bytes": 120000000,
+      "png_bytes": 867367,
+      "other_files": [
+        "LICENSE",
+        "pie.plymouth",
+        "pie.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 1.0,
+      "declared_frames": 120,
+      "nominal_fps_at_50hz": 50.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "pixels",
+      "pack": "pack_3",
+      "frames": 240,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "240"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 1) % 240]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 240
+      },
+      "modes": {
+        "RGB": 240
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 240,
+      "errors": [],
+      "decoded_bytes": 204672000,
+      "png_bytes": 11316153,
+      "other_files": [
+        "LICENSE",
+        "pixels.plymouth",
+        "pixels.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 1.0,
+      "declared_frames": 240,
+      "nominal_fps_at_50hz": 50.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "polaroid",
+      "pack": "pack_3",
+      "frames": 392,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "392"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 392]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 392
+      },
+      "modes": {
+        "P": 387,
+        "1": 5
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 392,
+      "errors": [],
+      "decoded_bytes": 752640000,
+      "png_bytes": 1543794,
+      "other_files": [
+        "LICENSE",
+        "polaroid.plymouth",
+        "polaroid.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 392,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "red_loader",
+      "pack": "pack_4",
+      "frames": 53,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "53"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 53]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 53
+      },
+      "modes": {
+        "P": 50,
+        "1": 3
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 53,
+      "errors": [],
+      "decoded_bytes": 101760000,
+      "png_bytes": 485030,
+      "other_files": [
+        "LICENSE",
+        "red_loader.plymouth",
+        "red_loader.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 53,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "rings",
+      "pack": "pack_4",
+      "frames": 220,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "220"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 1) % 220]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "540x540": 220
+      },
+      "modes": {
+        "P": 220
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 220,
+      "errors": [],
+      "decoded_bytes": 256608000,
+      "png_bytes": 2308304,
+      "other_files": [
+        "LICENSE",
+        "rings.plymouth",
+        "rings.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 1.0,
+      "declared_frames": 220,
+      "nominal_fps_at_50hz": 50.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "rings_2",
+      "pack": "pack_4",
+      "frames": 270,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "270"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 270]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 270
+      },
+      "modes": {
+        "P": 270
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 270,
+      "errors": [],
+      "decoded_bytes": 518400000,
+      "png_bytes": 6528689,
+      "other_files": [
+        "LICENSE",
+        "rings_2.plymouth",
+        "rings_2.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 270,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "rog",
+      "pack": "pack_4",
+      "frames": 130,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "75"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 75]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "1080x720": 130
+      },
+      "modes": {
+        "L": 2,
+        "RGB": 128
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 121,
+      "errors": [],
+      "decoded_bytes": 404352000,
+      "png_bytes": 12522687,
+      "other_files": [
+        "LICENSE",
+        "rog.plymouth",
+        "rog.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 75,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": [
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129
+      ]
+    },
+    {
+      "theme": "rog_2",
+      "pack": "pack_4",
+      "frames": 15,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "15"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 3) % 15]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "1080x720": 15
+      },
+      "modes": {
+        "RGB": 15
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 15,
+      "errors": [],
+      "decoded_bytes": 46656000,
+      "png_bytes": 1455201,
+      "other_files": [
+        "LICENSE",
+        "rog_2.plymouth",
+        "rog_2.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 3.0,
+      "declared_frames": 15,
+      "nominal_fps_at_50hz": 16.666666666666668,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "seal",
+      "pack": "pack_4",
+      "frames": 400,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "400"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 1) % 400]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x300": 400
+      },
+      "modes": {
+        "L": 400
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 400,
+      "errors": [],
+      "decoded_bytes": 192000000,
+      "png_bytes": 3234332,
+      "other_files": [
+        "LICENSE",
+        "seal.plymouth",
+        "seal.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 1.0,
+      "declared_frames": 400,
+      "nominal_fps_at_50hz": 50.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "seal_2",
+      "pack": "pack_4",
+      "frames": 399,
+      "sequence_contiguous": false,
+      "loop_counts": [
+        "400"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 400]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x300": 399
+      },
+      "modes": {
+        "L": 399
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 399,
+      "errors": [],
+      "decoded_bytes": 191520000,
+      "png_bytes": 6027079,
+      "other_files": [
+        "LICENSE",
+        "seal_2.plymouth",
+        "seal_2.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 400,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [
+        5
+      ],
+      "unused_frames": []
+    },
+    {
+      "theme": "seal_3",
+      "pack": "pack_4",
+      "frames": 323,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "323"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 0.5) % 323]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x300": 323
+      },
+      "modes": {
+        "L": 323
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 323,
+      "errors": [],
+      "decoded_bytes": 155040000,
+      "png_bytes": 6891964,
+      "other_files": [
+        "LICENSE",
+        "seal_3.plymouth",
+        "seal_3.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 0.5,
+      "declared_frames": 323,
+      "nominal_fps_at_50hz": 100.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "sliced",
+      "pack": "pack_4",
+      "frames": 45,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "45"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 45]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "450x450": 45
+      },
+      "modes": {
+        "RGBA": 45
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 45,
+      "errors": [],
+      "decoded_bytes": 36450000,
+      "png_bytes": 2535088,
+      "other_files": [
+        "LICENSE",
+        "sliced.plymouth",
+        "sliced.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 45,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "sphere",
+      "pack": "pack_4",
+      "frames": 36,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "36"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 36]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "500x500": 36
+      },
+      "modes": {
+        "P": 36
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 36,
+      "errors": [],
+      "decoded_bytes": 36000000,
+      "png_bytes": 471142,
+      "other_files": [
+        "LICENSE",
+        "sphere.plymouth",
+        "sphere.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 36,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "spin",
+      "pack": "pack_4",
+      "frames": 169,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "169"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 169]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "640x400": 169
+      },
+      "modes": {
+        "RGB": 169
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 169,
+      "errors": [],
+      "decoded_bytes": 173056000,
+      "png_bytes": 7179639,
+      "other_files": [
+        "LICENSE",
+        "spin.plymouth",
+        "spin.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 169,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "spinner_alt",
+      "pack": "pack_4",
+      "frames": 60,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "60"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 60]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "400x600": 60
+      },
+      "modes": {
+        "L": 60
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 60,
+      "errors": [],
+      "decoded_bytes": 57600000,
+      "png_bytes": 961138,
+      "other_files": [
+        "LICENSE",
+        "spinner_alt.plymouth",
+        "spinner_alt.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 60,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "splash",
+      "pack": "pack_4",
+      "frames": 65,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "65"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 65]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 65
+      },
+      "modes": {
+        "P": 65
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 65,
+      "errors": [],
+      "decoded_bytes": 124800000,
+      "png_bytes": 479898,
+      "other_files": [
+        "LICENSE",
+        "splash.plymouth",
+        "splash.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 65,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "square",
+      "pack": "pack_4",
+      "frames": 45,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "45"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 45]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "512x510": 45
+      },
+      "modes": {
+        "P": 45
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 45,
+      "errors": [],
+      "decoded_bytes": 47001600,
+      "png_bytes": 1171900,
+      "other_files": [
+        "LICENSE",
+        "square.plymouth",
+        "square.script"
+      ],
+      "fits_existing_source_limits": true,
+      "refresh_divisor": 2.0,
+      "declared_frames": 45,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "square_hud",
+      "pack": "pack_4",
+      "frames": 173,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "173"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 173]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "800x600": 173
+      },
+      "modes": {
+        "L": 158,
+        "1": 15
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 173,
+      "errors": [],
+      "decoded_bytes": 332160000,
+      "png_bytes": 278718,
+      "other_files": [
+        "LICENSE",
+        "square_hud.plymouth",
+        "square_hud.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 173,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "target",
+      "pack": "pack_4",
+      "frames": 138,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "138"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 4) % 138]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "600x338": 138
+      },
+      "modes": {
+        "P": 138
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 138,
+      "errors": [],
+      "decoded_bytes": 111945600,
+      "png_bytes": 3804833,
+      "other_files": [
+        "LICENSE",
+        "target.plymouth",
+        "target.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 4.0,
+      "declared_frames": 138,
+      "nominal_fps_at_50hz": 12.5,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "target_2",
+      "pack": "pack_4",
+      "frames": 90,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "90"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 90]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "533x400": 90
+      },
+      "modes": {
+        "L": 90
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 90,
+      "errors": [],
+      "decoded_bytes": 76752000,
+      "png_bytes": 2958591,
+      "other_files": [
+        "LICENSE",
+        "target_2.plymouth",
+        "target_2.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 90,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "tech_a",
+      "pack": "pack_4",
+      "frames": 166,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "166"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 166]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "600x456": 166
+      },
+      "modes": {
+        "P": 166
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 166,
+      "errors": [],
+      "decoded_bytes": 181670400,
+      "png_bytes": 6198714,
+      "other_files": [
+        "LICENSE",
+        "tech_a.plymouth",
+        "tech_a.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 166,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "tech_b",
+      "pack": "pack_4",
+      "frames": 192,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "192"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 3) % 192]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "600x600": 192
+      },
+      "modes": {
+        "P": 192
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 192,
+      "errors": [],
+      "decoded_bytes": 276480000,
+      "png_bytes": 9131700,
+      "other_files": [
+        "LICENSE",
+        "tech_b.plymouth",
+        "tech_b.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 3.0,
+      "declared_frames": 192,
+      "nominal_fps_at_50hz": 16.666666666666668,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    },
+    {
+      "theme": "unrap",
+      "pack": "pack_4",
+      "frames": 150,
+      "sequence_contiguous": true,
+      "loop_counts": [
+        "150"
+      ],
+      "index_expressions": [
+        "flyingman_image[Math.Int(progress / 2) % 150]"
+      ],
+      "module": [
+        "script"
+      ],
+      "image_dir_matches": true,
+      "script_path_matches": true,
+      "dimensions": {
+        "600x480": 150
+      },
+      "modes": {
+        "L": 150
+      },
+      "transparent_frames": 0,
+      "black_corner_frames": 150,
+      "errors": [],
+      "decoded_bytes": 172800000,
+      "png_bytes": 3556982,
+      "other_files": [
+        "LICENSE",
+        "unrap.plymouth",
+        "unrap.script"
+      ],
+      "fits_existing_source_limits": false,
+      "refresh_divisor": 2.0,
+      "declared_frames": 150,
+      "nominal_fps_at_50hz": 25.0,
+      "missing_referenced_frames": [],
+      "unused_frames": []
+    }
+  ],
+  "script_groups": [
+    [
+      "pack_1/abstract_ring/abstract_ring.script",
+      "pack_1/abstract_ring_alt/abstract_ring_alt.script",
+      "pack_1/alienware/alienware.script",
+      "pack_1/angular/angular.script",
+      "pack_1/angular_alt/angular_alt.script",
+      "pack_1/black_hud/black_hud.script",
+      "pack_1/blockchain/blockchain.script",
+      "pack_1/circle/circle.script",
+      "pack_1/circle_alt/circle_alt.script",
+      "pack_1/circle_flow/circle_flow.script",
+      "pack_1/circle_hud/circle_hud.script",
+      "pack_1/circuit/circuit.script",
+      "pack_1/colorful/colorful.script",
+      "pack_1/colorful_loop/colorful_loop.script",
+      "pack_1/colorful_sliced/colorful_sliced.script",
+      "pack_1/connect/connect.script",
+      "pack_1/cross_hud/cross_hud.script",
+      "pack_1/cubes/cubes.script",
+      "pack_1/cuts/cuts.script",
+      "pack_1/cuts_alt/cuts_alt.script",
+      "pack_2/cyanide/cyanide.script",
+      "pack_2/cybernetic/cybernetic.script",
+      "pack_2/dark_planet/dark_planet.script",
+      "pack_2/darth_vader/darth_vader.script",
+      "pack_2/deus_ex/deus_ex.script",
+      "pack_2/dna/dna.script",
+      "pack_2/double/double.script",
+      "pack_2/dragon/dragon.script",
+      "pack_2/flame/flame.script",
+      "pack_2/glitch/glitch.script",
+      "pack_2/glowing/glowing.script",
+      "pack_2/green_blocks/green_blocks.script",
+      "pack_2/green_loader/green_loader.script",
+      "pack_2/hexagon/hexagon.script",
+      "pack_2/hexagon_2/hexagon_2.script",
+      "pack_2/hexagon_alt/hexagon_alt.script",
+      "pack_2/hexagon_dots/hexagon_dots.script",
+      "pack_2/hexagon_dots_alt/hexagon_dots_alt.script",
+      "pack_2/hexagon_hud/hexagon_hud.script",
+      "pack_2/hexagon_red/hexagon_red.script",
+      "pack_3/hexa_retro/hexa_retro.script",
+      "pack_3/hud/hud.script",
+      "pack_3/hud_2/hud_2.script",
+      "pack_3/hud_3/hud_3.script",
+      "pack_3/hud_space/hud_space.script",
+      "pack_3/ibm/ibm.script",
+      "pack_3/infinite_seal/infinite_seal.script",
+      "pack_3/ironman/ironman.script",
+      "pack_3/liquid/liquid.script",
+      "pack_3/loader/loader.script",
+      "pack_3/loader_2/loader_2.script",
+      "pack_3/loader_alt/loader_alt.script",
+      "pack_3/lone/lone.script",
+      "pack_3/metal_ball/metal_ball.script",
+      "pack_3/motion/motion.script",
+      "pack_3/optimus/optimus.script",
+      "pack_3/owl/owl.script",
+      "pack_3/pie/pie.script",
+      "pack_3/pixels/pixels.script",
+      "pack_3/polaroid/polaroid.script",
+      "pack_4/red_loader/red_loader.script",
+      "pack_4/rings/rings.script",
+      "pack_4/rings_2/rings_2.script",
+      "pack_4/rog/rog.script",
+      "pack_4/rog_2/rog_2.script",
+      "pack_4/seal/seal.script",
+      "pack_4/seal_2/seal_2.script",
+      "pack_4/seal_3/seal_3.script",
+      "pack_4/sliced/sliced.script",
+      "pack_4/sphere/sphere.script",
+      "pack_4/spin/spin.script",
+      "pack_4/spinner_alt/spinner_alt.script",
+      "pack_4/splash/splash.script",
+      "pack_4/square/square.script",
+      "pack_4/square_hud/square_hud.script",
+      "pack_4/target/target.script",
+      "pack_4/target_2/target_2.script",
+      "pack_4/tech_a/tech_a.script",
+      "pack_4/tech_b/tech_b.script",
+      "pack_4/unrap/unrap.script"
+    ]
+  ],
+  "file_extensions": {
+    "(none)": 83,
+    ".md": 1,
+    ".png": 11063,
+    ".sh": 1,
+    ".script": 81,
+    ".plymouth": 81
+  },
+  "file_count": 11310,
+  "license_hashes": {
+    "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986": 1,
+    "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2": 81
+  },
+  "extra_pngs": {
+    ".": {
+      "files": 1,
+      "dimensions": {
+        "(1920, 1032)": 1
+      },
+      "errors": []
+    },
+    "pack_1/alienware/large_icons": {
+      "files": 24,
+      "dimensions": {
+        "(720, 720)": 24
+      },
+      "errors": []
+    },
+    "pack_1/circle_hud/large_icons": {
+      "files": 156,
+      "dimensions": {
+        "(800, 600)": 156
+      },
+      "errors": []
+    },
+    "pack_1/colorful_loop/large_icons": {
+      "files": 89,
+      "dimensions": {
+        "(750, 750)": 89
+      },
+      "errors": []
+    },
+    "pack_1/black_hud/large_icons": {
+      "files": 164,
+      "dimensions": {
+        "(800, 600)": 164
+      },
+      "errors": []
+    },
+    "pack_3/liquid/large_icons": {
+      "files": 19,
+      "dimensions": {
+        "(800, 600)": 19
+      },
+      "errors": []
+    },
+    "pack_3/hud/large_icons": {
+      "files": 20,
+      "dimensions": {
+        "(440, 440)": 20
+      },
+      "errors": []
+    },
+    "pack_3/hud_space/large_icons": {
+      "files": 119,
+      "dimensions": {
+        "(800, 600)": 119
+      },
+      "errors": []
+    },
+    "pack_3/metal_ball/large_icons": {
+      "files": 100,
+      "dimensions": {
+        "(800, 600)": 100
+      },
+      "errors": []
+    },
+    "pack_2/hexagon_hud/large_icons": {
+      "files": 205,
+      "dimensions": {
+        "(800, 600)": 205
+      },
+      "errors": []
+    },
+    "pack_2/hexagon_2/large_icons": {
+      "files": 100,
+      "dimensions": {
+        "(800, 600)": 100
+      },
+      "errors": []
+    },
+    "pack_2/hexagon_alt/large_icons": {
+      "files": 119,
+      "dimensions": {
+        "(500, 500)": 119
+      },
+      "errors": []
+    },
+    "pack_2/darth_vader/large_icons": {
+      "files": 115,
+      "dimensions": {
+        "(800, 600)": 115
+      },
+      "errors": []
+    }
+  },
+  "parser_failures": [],
+  "normalization": "All 80 scripts are identical after removing comments/whitespace and replacing only animation loop count, modulo count, and refresh divisor.",
+  "clone_path": "/home/swshin/workspace/plymouth-themes",
+  "runtime_validation": {
+    "all_80_scripts": "Installed Plymouth parser accepted all 80 scripts",
+    "representative_execution": "Angular executed with actual images in the installed script plugin; refresh/password/question/message/normal callbacks exercised without daemon or display",
+    "password_animation": "progress advanced from 50 to 51 after password prompt: state.status does not gate refresh",
+    "real_boot_test": false
+  }
+}

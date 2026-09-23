@@ -8,24 +8,27 @@ import (
 )
 
 func TestInstalledPreview(t *testing.T) {
-	dir := t.TempDir()
-	config := filepath.Join(dir, "config")
-	logo := filepath.Join(dir, "logo.png")
+	paths, _ := previewFixture(t)
+	dir := filepath.Join(paths.Roots[0], "opi-custom-logo")
+	os.MkdirAll(dir, 0755)
+	os.WriteFile(filepath.Join(dir, "opi-custom-logo.plymouth"), []byte("[Plymouth Theme]\nModuleName=script\n"), 0644)
+	config := paths.Config
+	logo := filepath.Join(dir, "watermark.png")
 	os.WriteFile(config, []byte("[Daemon]\nTheme = opi-custom-logo\n"), 0644)
 	original := sample()
 	os.WriteFile(logo, original, 0644)
-	got, size, applied := installedPreview(config, logo)
+	got, size, applied := selectedCustomPreview(paths, dir)
 	if !applied || size != 80 || !bytes.Equal(got, original) {
 		t.Fatal("installed logo not restored")
 	}
 	os.WriteFile(config, []byte("[Daemon]\nTheme=bgrt\n"), 0644)
-	_, size, applied = installedPreview(config, logo)
+	_, size, applied = selectedCustomPreview(paths, dir)
 	if applied || size != 320 {
 		t.Fatal("old custom file mistaken for selected theme")
 	}
 	os.WriteFile(config, []byte("[Daemon]\nTheme=opi-custom-logo\n"), 0644)
 	os.WriteFile(logo, []byte("invalid"), 0644)
-	_, _, applied = installedPreview(config, logo)
+	_, _, applied = selectedCustomPreview(paths, dir)
 	if applied {
 		t.Fatal("corrupt image accepted")
 	}

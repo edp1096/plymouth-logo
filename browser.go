@@ -8,7 +8,7 @@ import (
 )
 
 func windowArgs(url, profile string) []string {
-	return []string{"--app=" + url, "--user-data-dir=" + profile, "--window-size=856,803", "--class=plymouth-logo", "--ozone-platform=x11", "--no-first-run", "--no-default-browser-check", "--disable-background-mode"}
+	return []string{"--app=" + url, "--user-data-dir=" + profile, "--window-size=856,823", "--class=plymouth-logo", "--ozone-platform=x11", "--no-first-run", "--no-default-browser-check", "--disable-background-mode"}
 }
 
 func appWindow(url string) (*exec.Cmd, func(), error) {

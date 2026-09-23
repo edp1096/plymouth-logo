@@ -3,32 +3,10 @@ package main
 import (
 	"bytes"
 	"image"
-	"os"
-	"strings"
+	"path/filepath"
 )
 
-// Read the installed theme, not a previous upload or a per-browser cache.
-func installedPreview(config, logo string) ([]byte, int, bool) {
-	conf, err := os.ReadFile(config)
-	if err != nil {
-		return defaultPreview()
-	}
-	section := ""
-	theme := ""
-	for _, line := range strings.Split(string(conf), "\n") {
-		line = strings.TrimSpace(line)
-		if strings.HasPrefix(line, "[") {
-			section = line
-			continue
-		}
-		key, value, ok := strings.Cut(line, "=")
-		if ok && section == "[Daemon]" && strings.TrimSpace(key) == "Theme" {
-			theme = strings.TrimSpace(value)
-		}
-	}
-	if theme != "opi-custom-logo" {
-		return defaultPreview()
-	}
+func readLogoPreview(logo string) ([]byte, int, bool) {
 	data, err := readLimited(logo, 12*1024*1024)
 	if err != nil {
 		return defaultPreview()
@@ -39,12 +17,30 @@ func installedPreview(config, logo string) ([]byte, int, bool) {
 	}
 	return data, max(cfg.Width, cfg.Height), true
 }
+
+// The daemon's theme selection can override plymouthd.conf (for example via
+// plymouth.splash). Only use the custom preview when that exact theme is selected.
+func selectedCustomPreview(paths themePreviewPaths, customDir string) ([]byte, int, bool) {
+	selected, err := paths.resolve("current")
+	if err != nil {
+		return defaultPreview()
+	}
+	selected, err = filepath.EvalSymlinks(selected)
+	if err != nil {
+		return defaultPreview()
+	}
+	custom, err := filepath.EvalSymlinks(filepath.Join(customDir, "opi-custom-logo.plymouth"))
+	if err != nil || selected != custom {
+		return defaultPreview()
+	}
+	return readLogoPreview(filepath.Join(customDir, "watermark.png"))
+}
 func defaultPreview() ([]byte, int, bool) {
 	data, _ := assets.ReadFile("assets/default.png")
 	return data, 320, false
 }
 func (a *app) refreshPreview() {
-	data, size, applied := installedPreview(configPath, themeDir+"/watermark.png")
+	data, size, applied := selectedCustomPreview(installedThemePaths(), themeDir)
 	a.mu.Lock()
 	defer a.mu.Unlock()
 	a.preview = data
@@ -55,5 +51,8 @@ func (a *app) refreshPreview() {
 	a.state.SpinnerItem = installedSpinnerItem(applied)
 	a.state.SpinnerSize = installedSpinnerSize(applied)
 	a.state.LogoPosition = installedLogoPosition(applied)
+	a.state.Animations, a.state.AnimationError = installedAnimationLayers(applied)
+	a.state.SpinnerFPS = installedAnimationFPS(applied)
+	a.state.Layers, a.state.LayerError = installedSceneLayers(applied)
 	a.state.Revision++
 }

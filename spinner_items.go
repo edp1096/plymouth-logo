@@ -13,6 +13,8 @@ import (
 )
 
 type spinnerEntry struct {
+	Width   int      `json:"width"`
+	Height  int      `json:"height"`
 	ID      string   `json:"id"`
 	Name    string   `json:"name"`
 	Aliases []string `json:"aliases,omitempty"`
