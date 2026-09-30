@@ -42,7 +42,7 @@ type themePreviewPaths struct {
 }
 
 func installedThemePaths() themePreviewPaths {
-	return themePreviewPaths{configPath, []string{"/run/plymouth/plymouthd.defaults", "/usr/share/plymouth/plymouthd.defaults", "/usr/lib/plymouth/plymouthd.defaults"}, []string{"/run/plymouth/themes", "/usr/share/plymouth/themes"}, "/usr/share/plymouth/themes/default.plymouth", "/proc/cmdline", "/sys/firmware/acpi/bgrt/image"}
+	return themePreviewPaths{configPath, []string{"/run/plymouth/plymouthd.defaults", "/usr/share/plymouth/plymouthd.defaults", "/usr/lib/plymouth/plymouthd.defaults", "/lib/plymouth/plymouthd.defaults"}, []string{"/run/plymouth/themes", "/usr/share/plymouth/themes", "/usr/lib/plymouth/themes", "/lib/plymouth/themes"}, "/usr/share/plymouth/themes/default.plymouth", "/proc/cmdline", "/sys/firmware/acpi/bgrt/image"}
 }
 func readThemeINI(path string) (map[string]map[string]string, error) {
 	data, err := readLimited(path, 256*1024)
@@ -75,7 +75,7 @@ func (p themePreviewPaths) namedTheme(name, extraRoot string) (string, error) {
 	}
 	roots := append([]string(nil), p.Roots...)
 	if extraRoot != "" {
-		roots = append([]string{p.Roots[0], extraRoot}, p.Roots[1:]...)
+		roots = append([]string{extraRoot}, roots...)
 	}
 	for _, root := range roots {
 		path := filepath.Join(root, name, name+".plymouth")
@@ -114,7 +114,15 @@ func (p themePreviewPaths) resolve(source string) (string, error) {
 			return p.namedTheme(name, ini["Daemon"]["ThemeDir"])
 		}
 	}
-	return filepath.EvalSymlinks(p.Link)
+	if resolved, err := filepath.EvalSymlinks(p.Link); err == nil {
+		return resolved, nil
+	}
+	for _, root := range p.Roots {
+		if resolved, err := filepath.EvalSymlinks(filepath.Join(root, "default.plymouth")); err == nil {
+			return resolved, nil
+		}
+	}
+	return "", fmt.Errorf("설치된 시스템 기본 테마를 찾을 수 없습니다.")
 }
 func previewAlignment(section map[string]string, key string, fallback float64) (float64, error) {
 	value, ok := section[key]
@@ -189,11 +197,14 @@ func readTwoStepPreview(path, firmware string) (out systemThemePreview, err erro
 	}
 	if boot["UseFirmwareBackground"] == "true" {
 		if _, e := os.Stat(firmware); e == nil {
-			return out, fmt.Errorf("펌웨어 BGRT 화면은 미리보기를 지원하지 않습니다.")
+			layer, e := firmwarePreview(firmware)
+			if e != nil {
+				return out, e
+			}
+			out.Layers = append(out.Layers, layer)
 		} else if !os.IsNotExist(e) {
 			return out, e
-		}
-		if err = addPNG("bgrt-fallback.png", 50, 38.2, true); err != nil {
+		} else if err = addPNG("bgrt-fallback.png", 50, 38.2, true); err != nil {
 			return out, err
 		}
 		if len(out.Layers) > 0 {
@@ -230,8 +241,12 @@ func readTwoStepPreview(path, firmware string) (out systemThemePreview, err erro
 		if len(files) == 0 || len(files) > 120 {
 			return out, fmt.Errorf("unsupported throbber frame count: %d", len(files))
 		}
+		start := 1
+		if filepath.Base(files[0]) == "throbber-0000.png" {
+			start = 0
+		}
 		for i, file := range files {
-			if filepath.Base(file) != fmt.Sprintf("throbber-%04d.png", i+1) {
+			if filepath.Base(file) != fmt.Sprintf("throbber-%04d.png", i+start) {
 				return out, fmt.Errorf("spinner frame sequence is incomplete")
 			}
 		}
@@ -261,7 +276,14 @@ func (p themePreviewPaths) preview(source string) systemThemePreview {
 	path, err := p.resolve(source)
 	out := systemThemePreview{}
 	if err == nil {
-		out, err = readTwoStepPreview(path, p.Firmware)
+		ini, e := readThemeINI(path)
+		if e != nil {
+			err = e
+		} else if ini["Plymouth Theme"]["ModuleName"] == "script" {
+			out, err = readScriptReference(path, ini)
+		} else {
+			out, err = readTwoStepPreview(path, p.Firmware)
+		}
 	}
 	if err != nil {
 		out.Available = false

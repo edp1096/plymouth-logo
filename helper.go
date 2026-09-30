@@ -21,7 +21,9 @@ var configPath = "/etc/plymouth/plymouthd.conf"
 var hookPath = "/etc/initramfs-tools/hooks/opi-custom-logo"
 var bootImage = "/boot/firmware/initrd.img"
 
-const kernelVersion = "5.10.160-rockchip"
+var kernelVersion = runningKernel()
+var bootRamdisk string
+var bootArchitecture string
 
 var command = func(name string, args ...string) error {
 	out, err := exec.Command(name, args...).CombinedOutput()
@@ -70,32 +72,8 @@ func copyFile(src, dst string) error {
 	return atomicWrite(dst, data, 0644)
 }
 func checkHost() error {
-	board, err := os.ReadFile("/proc/device-tree/model")
-	if err != nil || !strings.Contains(string(board), "Orange Pi 5 Plus") {
-		return fmt.Errorf("this tool is for Orange Pi 5 Plus")
-	}
-	kernel, err := exec.Command("uname", "-r").Output()
-	if err != nil || strings.TrimSpace(string(kernel)) != kernelVersion {
-		return fmt.Errorf("boot the original %s kernel first", kernelVersion)
-	}
-	cmdline, err := os.ReadFile("/proc/cmdline")
-	if err != nil || !strings.Contains(string(cmdline), "rknpu_boot.path=stable-fallback") {
-		return fmt.Errorf("use the normal original-kernel boot path first")
-	}
-	if err = command("mountpoint", "-q", "/boot/firmware"); err != nil {
-		return fmt.Errorf("boot firmware partition is not mounted")
-	}
-	info, err := os.Lstat(bootImage)
-	if err != nil || !info.Mode().IsRegular() {
-		return fmt.Errorf("unexpected normal boot initramfs")
-	}
-	for _, flag := range []string{"rnold.flg", "rnnew.flg"} {
-		b, e := os.ReadFile("/boot/firmware/" + flag)
-		if e != nil || string(b) != "0" {
-			return fmt.Errorf("cancel pending kernel trials first")
-		}
-	}
-	return nil
+	_, err := detectBoot("")
+	return err
 }
 func configTheme(original string) string {
 	lines := strings.Split(original, "\n")
@@ -131,7 +109,10 @@ func backupCurrent() (string, error) {
 	if err = copyFile(bootImage, dir+"/initrd.img"); err != nil {
 		return "", err
 	}
-	for name, path := range map[string]string{"config": configPath, "hook": hookPath} {
+	for name, path := range map[string]string{"config": configPath, "hook": hookPath, "ramdisk": bootRamdisk} {
+		if path == "" {
+			continue
+		}
 		if exists(path) {
 			if err = copyFile(path, dir+"/"+name); err != nil {
 				return "", err
@@ -143,6 +124,10 @@ func backupCurrent() (string, error) {
 			return "", err
 		}
 	}
+	metadata, _ := json.Marshal(bootTarget{Kernel: kernelVersion, Image: bootImage, Ramdisk: bootRamdisk, Architecture: bootArchitecture})
+	if err = atomicWrite(dir+"/boot.json", metadata, 0600); err != nil {
+		return "", err
+	}
 	data, err := os.ReadFile(dir + "/initrd.img")
 	if err != nil {
 		return "", err
@@ -151,9 +136,33 @@ func backupCurrent() (string, error) {
 	if err = atomicWrite(dir+"/sha256", []byte(hex.EncodeToString(sum[:])), 0600); err != nil {
 		return "", err
 	}
+	if bootRamdisk != "" {
+		raw, e := os.ReadFile(dir + "/ramdisk")
+		if e != nil {
+			return "", e
+		}
+		sum := sha256.Sum256(raw)
+		if e = atomicWrite(dir+"/ramdisk.sha256", []byte(hex.EncodeToString(sum[:])), 0600); e != nil {
+			return "", e
+		}
+	}
 	return dir, nil
 }
 func restoreBackup(dir string) error {
+	if metadata, e := os.ReadFile(dir + "/boot.json"); e == nil {
+		var saved bootTarget
+		if e = json.Unmarshal(metadata, &saved); e != nil {
+			return e
+		}
+		if saved.Kernel != kernelVersion || saved.Image != bootImage || saved.Ramdisk != bootRamdisk {
+			return fmt.Errorf("backup belongs to a different kernel or boot configuration")
+		}
+	} else if !os.IsNotExist(e) {
+		return e
+	} else if bootImage != "/boot/firmware/initrd.img" || kernelVersion != "5.10.160-rockchip" {
+		return fmt.Errorf("legacy backup belongs to the original Rockchip boot configuration")
+	}
+
 	data, err := os.ReadFile(dir + "/initrd.img")
 	if err != nil {
 		return err
@@ -166,10 +175,27 @@ func restoreBackup(dir string) error {
 	if hex.EncodeToString(sum[:]) != strings.TrimSpace(string(expected)) {
 		return fmt.Errorf("backup checksum mismatch")
 	}
+	if bootRamdisk != "" {
+		raw, e := os.ReadFile(dir + "/ramdisk")
+		if e != nil {
+			return e
+		}
+		expected, e := os.ReadFile(dir + "/ramdisk.sha256")
+		if e != nil {
+			return e
+		}
+		sum := sha256.Sum256(raw)
+		if hex.EncodeToString(sum[:]) != strings.TrimSpace(string(expected)) {
+			return fmt.Errorf("U-Boot backup checksum mismatch")
+		}
+	}
 	if err = atomicWrite(bootImage, data, 0644); err != nil {
 		return err
 	}
-	for name, path := range map[string]string{"config": configPath, "hook": hookPath} {
+	for name, path := range map[string]string{"config": configPath, "hook": hookPath, "ramdisk": bootRamdisk} {
+		if path == "" {
+			continue
+		}
 		if exists(dir + "/" + name) {
 			if err = copyFile(dir+"/"+name, path); err != nil {
 				return err
@@ -180,6 +206,9 @@ func restoreBackup(dir string) error {
 				}
 			}
 		} else {
+			if name == "ramdisk" {
+				return fmt.Errorf("backup is missing U-Boot ramdisk")
+			}
 			if err = os.Remove(path); err != nil && !os.IsNotExist(err) {
 				return err
 			}
@@ -398,6 +427,13 @@ func applyThemeComposition(pngData []byte, background, item string, size int, sp
 	if !strings.Contains(string(listing), "usr/share/plymouth/themes/opi-custom-logo/watermark.png") || !strings.Contains(string(listing), "lib/modules/"+kernelVersion) {
 		return fmt.Errorf("generated initramfs is missing the logo or matching modules")
 	}
+	module := "two-step"
+	if scenes != nil || specs != nil || item != "default" {
+		module = "script"
+	}
+	if err = verifyPlymouthPlugins(string(listing), module); err != nil {
+		return err
+	}
 	if scenes != nil {
 		if err = verifyLayerArchive(string(listing), sceneAnimations(resolvedScene), "layers.json"); err != nil {
 			return err
@@ -407,7 +443,7 @@ func applyThemeComposition(pngData []byte, background, item string, size int, sp
 			return err
 		}
 	} else if item != "default" {
-		for _, required := range []string{"/plymouth/script.so", "/plymouth/label.so", "usr/share/plymouth/themes/opi-custom-logo/opi-custom-logo.script", fmt.Sprintf("usr/share/plymouth/themes/opi-custom-logo/throbber-%04d.png", animation.Frames)} {
+		for _, required := range []string{"/plymouth/script.so", "usr/share/plymouth/themes/opi-custom-logo/opi-custom-logo.script", fmt.Sprintf("usr/share/plymouth/themes/opi-custom-logo/throbber-%04d.png", animation.Frames)} {
 			if !strings.Contains(string(listing), required) {
 				return fmt.Errorf("generated initramfs is missing %s", required)
 			}
@@ -421,8 +457,21 @@ func applyThemeComposition(pngData []byte, background, item string, size int, sp
 	if err = syscall.Statfs(filepath.Dir(bootImage), &fs); err != nil {
 		return err
 	}
-	if fs.Bavail*uint64(fs.Bsize) < uint64(info.Size())+16*1024*1024 {
+	required := uint64(info.Size()) + 16*1024*1024
+	if bootRamdisk != "" {
+		required += uint64(info.Size()) + 4096
+	}
+	if fs.Bavail*uint64(fs.Bsize) < required {
 		return fmt.Errorf("insufficient boot partition space")
+	}
+	if bootRamdisk != "" {
+		wrapped := dir + "/uInitrd"
+		if err = command("mkimage", "-A", bootArchitecture, "-O", "linux", "-T", "ramdisk", "-C", "gzip", "-n", "uInitrd", "-d", image, wrapped); err != nil {
+			return err
+		}
+		if err = copyFile(wrapped, bootRamdisk); err != nil {
+			return err
+		}
 	}
 	if err = copyFile(image, bootImage); err != nil {
 		return err
@@ -430,7 +479,7 @@ func applyThemeComposition(pngData []byte, background, item string, size int, sp
 	if err = atomicWrite(stateDir+"/latest", []byte(filepath.Base(backup)), 0600); err != nil {
 		return err
 	}
-	fmt.Printf("Applied. Reboot manually when ready.\nBackup: %s\nKernel trial slots are unchanged.\n", backup)
+	fmt.Printf("Applied. Reboot manually when ready.\nBackup: %s\nBoot images updated for the detected kernel.\n", backup)
 	return nil
 }
 func helper(args []string) error {
@@ -442,9 +491,11 @@ func helper(args []string) error {
 	if len(args) < 1 || (args[0] != "apply" && args[0] != "restore" && args[0] != "restore-original") {
 		return fmt.Errorf("expected apply or restore")
 	}
-	if err := checkHost(); err != nil {
+	target, err := detectBoot("")
+	if err != nil {
 		return err
 	}
+	kernelVersion, bootImage, bootRamdisk, bootArchitecture = target.Kernel, target.Image, target.Ramdisk, target.Architecture
 	if err := os.MkdirAll(stateDir, 0700); err != nil {
 		return err
 	}
@@ -461,7 +512,7 @@ func helper(args []string) error {
 		if len(args) != 1 {
 			return fmt.Errorf("unexpected restore arguments")
 		}
-		backup, err := originalBackup(stateDir)
+		backup, err := originalBackup(stateDir, target)
 		if err != nil {
 			return err
 		}
@@ -524,7 +575,7 @@ func helper(args []string) error {
 
 // Earlier versions did not record a permanent original pointer. Find the earliest
 // backup that predates this tool's custom theme, and let restoreBackup verify it.
-func originalBackup(root string) (string, error) {
+func originalBackup(root string, targets ...bootTarget) (string, error) {
 	entries, err := filepath.Glob(filepath.Join(root, "backup-*"))
 	if err != nil {
 		return "", err
@@ -537,6 +588,18 @@ func originalBackup(root string) (string, error) {
 		}
 		if !exists(dir+"/initrd.img") || !exists(dir+"/sha256") {
 			continue
+		}
+		if len(targets) > 0 {
+			target := targets[0]
+			data, e := os.ReadFile(dir + "/boot.json")
+			if e == nil {
+				var saved bootTarget
+				if json.Unmarshal(data, &saved) != nil || saved.Kernel != target.Kernel || saved.Image != target.Image || saved.Ramdisk != target.Ramdisk {
+					continue
+				}
+			} else if !os.IsNotExist(e) || target.Image != "/boot/firmware/initrd.img" || target.Kernel != "5.10.160-rockchip" {
+				continue
+			}
 		}
 		conf, err := os.ReadFile(dir + "/config")
 		if err != nil && !os.IsNotExist(err) {

@@ -4,6 +4,8 @@ App for customizing Plymouth boot screen. Arrange up to 8 images and 8 animation
 
 Use **Add image** for PNG/JPG files and **Add animation** for existing animations. Select a layer to edit it, replace an image, move it forward/backward, or remove it. Applied image originals are saved for later editing and restoration.
 
+Supports initramfs-tools boot layouts on Debian/Ubuntu with GRUB (including x86), Armbian U-Boot, Ubuntu Rockchip, and common Raspberry Pi OS firmware configurations. Detects the running kernel and boot image automatically. See [runtime support and limitations](docs/runtime.md).
+
 ## Run
 
 * Run `plymouth-logo`

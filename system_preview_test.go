@@ -169,3 +169,79 @@ func TestSystemPreviewHTTP(t *testing.T) {
 		}
 	}
 }
+
+func TestDefaultThemeAlternateRoots(t *testing.T) {
+	p, dir := previewFixture(t)
+	os.Remove(p.Link)
+	legacy := filepath.Join(t.TempDir(), "lib/plymouth/themes")
+	os.MkdirAll(legacy, 0755)
+	os.Rename(dir, legacy+"/bgrt")
+	p.Roots = append(p.Roots, legacy)
+	os.WriteFile(p.Defaults[0], []byte("[Daemon]\nTheme=bgrt\n"), 0644)
+	if path, err := p.resolve("default"); err != nil || path != legacy+"/bgrt/bgrt.plymouth" {
+		t.Fatal(path, err)
+	}
+	os.Remove(p.Defaults[0])
+	os.Symlink(legacy+"/bgrt/bgrt.plymouth", legacy+"/default.plymouth")
+	if path, err := p.resolve("default"); err != nil || path != legacy+"/bgrt/bgrt.plymouth" {
+		t.Fatal(path, err)
+	}
+	// A custom ThemeDir is honored without requiring a pre-existing search root.
+	p.Roots = nil
+	os.WriteFile(p.Config, []byte("[Daemon]\nTheme=bgrt\nThemeDir="+legacy+"\n"), 0644)
+	if path, err := p.resolve("current"); err != nil || path != legacy+"/bgrt/bgrt.plymouth" {
+		t.Fatal(path, err)
+	}
+}
+
+func TestScriptThemeArtworkReference(t *testing.T) {
+	p, _ := previewFixture(t)
+	dir := p.Roots[0] + "/raspberry-theme"
+	os.MkdirAll(dir, 0755)
+	os.WriteFile(dir+"/splash.png", sample(), 0644)
+	os.WriteFile(dir+"/raspberry-theme.plymouth", []byte("[Plymouth Theme]\nModuleName=script\n[script]\nImageDir="+dir+"\nScriptFile="+dir+"/theme.script\n"), 0644)
+	os.WriteFile(p.Defaults[0], []byte("[Daemon]\nTheme=raspberry-theme\n"), 0644)
+	os.WriteFile(dir+"/theme.script", []byte("# Image(\"missing-logo.png\")\nlogo = Image(\"splash.png\");\nlock=Image(\"missing-lock.png\");\n"), 0644)
+	got := p.preview("default")
+	if !got.Available || got.Module != "script" || len(got.Layers) != 1 || !strings.Contains(got.Note, "참고") {
+		t.Fatal(got)
+	}
+	os.WriteFile(dir+"/theme.script", []byte("logo=Image(\"missing-logo.png\");"), 0644)
+	if got = p.preview("default"); got.Available || got.Name != "raspberry-theme" || got.Reason == "" {
+		t.Fatal("missing artwork accepted", got)
+	}
+}
+
+func TestCurrentHostDefaultTheme(t *testing.T) {
+	if os.Getenv("PLYMOUTH_TEST_HOST") != "1" {
+		t.Skip("opt-in read-only installed theme check")
+	}
+	p := installedThemePaths()
+	path, err := p.resolve("default")
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := p.preview("default")
+	if !got.Available {
+		t.Fatal(got)
+	}
+	t.Logf("System default: %s (%s), %d layers, source %s", got.Name, got.Module, len(got.Layers), path)
+}
+
+func TestZeroBasedSystemSpinner(t *testing.T) {
+	p, dir := previewFixture(t)
+	// Move the whole 1..30 fixture to 0..29, preserving installed artwork.
+	for i := 1; i <= 30; i++ {
+		if err := os.Rename(fmt.Sprintf("%s/throbber-%04d.png", dir, i), fmt.Sprintf("%s/throbber-%04d.png", dir, i-1)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	got := p.preview("default")
+	if !got.Available || len(got.Layers) != 3 {
+		t.Fatal("zero-based spinner rejected", got.Reason)
+	}
+	os.Remove(dir + "/throbber-0010.png")
+	if got = p.preview("default"); got.Available {
+		t.Fatal("gap in zero-based spinner accepted")
+	}
+}

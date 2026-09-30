@@ -128,7 +128,8 @@ async function showSelectedTheme() {
     if(generation!==themePreviewGeneration) return;
     if(!theme.available) {
       setText('currentEmpty','현재 테마를 미리 볼 수 없습니다.');
-      setText('currentSize','미리보기 없음');
+      if(theme.name) setLiteral('currentSize',theme.name);
+      else setText('currentSize','미리보기 없음');
       setText('currentPreviewNote',theme.reason || '');
       return;
     }
@@ -149,7 +150,8 @@ async function showSelectedTheme() {
   } catch(e) {
     if(generation!==themePreviewGeneration) return;
     setText('currentEmpty','현재 테마를 미리 볼 수 없습니다.');
-    setText('currentSize','미리보기 없음');
+    if(theme.name) setLiteral('currentSize',theme.name);
+      else setText('currentSize','미리보기 없음');
     setLiteral('currentPreviewNote',e.message);
   }
 }

@@ -258,17 +258,8 @@ func verifyLayerArchive(listing string, layers []animationLayer, manifest string
 		files[strings.TrimPrefix(strings.TrimSpace(name), "./")] = true
 	}
 	required := []string{"usr/share/plymouth/themes/opi-custom-logo/" + manifest, "usr/share/plymouth/themes/opi-custom-logo/opi-custom-logo.script"}
-	for _, plugin := range []string{"script.so", "label.so"} {
-		found := false
-		for name := range files {
-			if strings.HasSuffix(name, "/plymouth/"+plugin) {
-				found = true
-				break
-			}
-		}
-		if !found {
-			return fmt.Errorf("generated initramfs is missing %s", plugin)
-		}
+	if err := verifyPlymouthPlugins(listing, "script"); err != nil {
+		return err
 	}
 	for i, layer := range layers {
 		for frame := 1; frame <= layer.Frames; frame++ {

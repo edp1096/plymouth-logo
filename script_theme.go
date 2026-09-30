@@ -153,5 +153,17 @@ PLUGIN_PATH="$(plymouth --get-splash-plugin-path)"
 MODULE="$(sed -n 's/^ModuleName=//p' /usr/share/plymouth/themes/opi-custom-logo/opi-custom-logo.plymouth)"
 case "$MODULE" in script|two-step) ;; *) exit 1;; esac
 copy_exec "$PLUGIN_PATH/$MODULE.so"
-copy_exec "$PLUGIN_PATH/label.so"
+# Plymouth label backend names vary between releases and distributions.
+# Include every available backend so the native loader can use its preference.
+LABEL_FOUND=0
+for LABEL in "$PLUGIN_PATH"/label*.so; do
+    if [ -f "$LABEL" ]; then
+        copy_exec "$LABEL"
+        LABEL_FOUND=1
+    fi
+done
+if [ "$LABEL_FOUND" -eq 0 ]; then
+    echo "No Plymouth label backend found in $PLUGIN_PATH" >&2
+    exit 1
+fi
 `
